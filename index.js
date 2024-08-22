@@ -12,18 +12,42 @@ app.use(express.static("public"));
 // Middleware: bodyParser to get form values from html
 app.use(bodyParser.urlencoded({ extended: true }));
 
+let coins = {};
+
+// Get coins list from api
+try {
+  const result = await axios.get(`https://api.coinpaprika.com/v1/coins`);
+  coins = result.data;
+} catch (error) {
+  console.log(JSON.stringify("Error: " + error));
+}
+
 // Root directory request
-app.get("/", (req, res) => {
-  res.render("home.ejs");
+app.get("/", async (req, res) => {
+  res.render("index.ejs", { coins: coins });
 });
 
-app.get("/bitcoin", async (req, res) => {
+app.get("/get-coin/:id", async (req, res) => {
+  let id = req.params.id;
   try {
-    const result = await axios.get('https://api.coinpaprika.com/v1/tickers/btc-bitcoin');
-    res.render("home.ejs", { price: result.data.quotes.USD.price});
-    console.log(JSON.stringify(result.data));
+    const result = await axios.get(
+      `https://api.coinpaprika.com/v1/tickers/${id}`
+    );
+    res.render("index.ejs", { price: result.data.quotes.USD.price, coins: coins});
   } catch (error) {
-    console.log(JSON.stringify(error.response.data));
+    console.log(JSON.stringify("Error: " + error));
+  }
+});
+
+app.post("/get-coin-from-list", async (req, res) => {
+  let id = req.body.coinid;
+  try {
+    const result = await axios.get(
+      `https://api.coinpaprika.com/v1/tickers/${id}`
+    );
+    res.render("index.ejs", { price: result.data.quotes.USD.price, coins: coins});
+  } catch (error) {
+    console.log(JSON.stringify("Error: " + error));
   }
 });
 

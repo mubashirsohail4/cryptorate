@@ -1,0 +1,62 @@
+<%- include("partials/header.ejs") %>
+
+<form action="/get-coin-from-list/" method="post">
+  <label for="coinslist">Choose a coin</label>
+  <select name="coinid" id="coinid">
+    <% for (let i = 0; i < 100; i++) { %>
+    <option value="<%= coins[i].id %>"><%= i+1 %>. <%= coins[i].name %></option>
+    <% } %>
+  </select>
+  <button type="submit">Get Rate</button>
+</form>
+
+<form id="quick-links-form" method="get">
+  <button
+    id="btc-bitcoin"
+    type="submit"
+    value="Bitcoin"
+    formaction="/get-coin/btc-bitcoin"
+  >
+    <img
+      src="https://static.coinpaprika.com/coin/btc-bitcoin/logo.png"
+      alt="btc-bitcoin"
+    />Bitcoin
+  </button>
+  <button
+    id="eth-ethereum"
+    type="submit"
+    value="Ethereum"
+    formaction="/get-coin/eth-ethereum"
+  >
+    <img
+      src="https://static.coinpaprika.com/coin/eth-ethereum/logo.png"
+      alt="eth-ethereum"
+    />Ethereum
+  </button>
+  <button
+    id="usdt-tether"
+    type="submit"
+    value="Tether"
+    formaction="/get-coin/usdt-tether"
+  >
+    <img
+      src="https://static.coinpaprika.com/coin/usdt-tether/logo.png"
+      alt="usdt-tether"
+    />Tether
+  </button>
+  <button
+    id="bnb-binance-coin"
+    type="submit"
+    value="Binance Coin"
+    formaction="/get-coin/bnb-binance-coin"
+  >
+    <img
+      src="https://static.coinpaprika.com/coin/bnb-binance-coin/logo.png"
+      alt="bnb-binance-coin"
+    />Binance Coin
+  </button>
+</form>
+
+<% if (locals.price) { %>
+<p>USD: <%= price %></p>
+<% } %> <%- include("partials/footer.ejs") %>
