@@ -27,25 +27,14 @@ app.get("/", async (req, res) => {
   res.render("index.ejs", { coins: coins });
 });
 
-app.get("/get-coin/:id", async (req, res) => {
-  let id = req.params.id;
-  try {
-    const result = await axios.get(
-      `https://api.coinpaprika.com/v1/tickers/${id}`
-    );
-    res.render("index.ejs", { price: result.data.quotes.USD.price, coins: coins});
-  } catch (error) {
-    console.log(JSON.stringify("Error: " + error));
-  }
-});
-
-app.post("/get-coin-from-list", async (req, res) => {
+// Get rate about specific coin
+app.post("/coin-rate", async (req, res) => {
   let id = req.body.coinid;
   try {
     const result = await axios.get(
       `https://api.coinpaprika.com/v1/tickers/${id}`
     );
-    res.render("index.ejs", { price: result.data.quotes.USD.price, coins: coins});
+    res.render("coin-rate.ejs", { data: result.data });
   } catch (error) {
     console.log(JSON.stringify("Error: " + error));
   }

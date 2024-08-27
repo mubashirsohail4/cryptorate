@@ -1,0 +1,18 @@
+<%- include("partials/header.ejs") %>
+
+<img
+  src="https://static.coinpaprika.com/coin/<%= data.id %>/logo.png"
+  alt="<%= data.id %>"
+/>
+
+<h2><%= data.name %></h2>
+<p>USD: <%= data.quotes.USD.price %> $</p>
+<p>Rank: <%= data.rank %></p>
+<p>Symbol: <%= data.symbol %></p>
+<p>1h: <%= data.quotes.USD.percent_change_1h %>%</p>
+<p>24h: <%= data.quotes.USD.percent_change_24h %>%</p>
+<p>7d: <%= data.quotes.USD.percent_change_7d %>%</p>
+<p>30d: <%= data.quotes.USD.percent_change_30d %>%</p>
+<p>1y: <%= data.quotes.USD.percent_change_1y %>%</p>
+
+<%- include("partials/footer.ejs") %>
