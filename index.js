@@ -31,10 +31,13 @@ app.get("/", async (req, res) => {
 app.post("/coin-rate", async (req, res) => {
   let id = req.body.coinid;
   try {
-    const result = await axios.get(
+    const rate = await axios.get(
       `https://api.coinpaprika.com/v1/tickers/${id}`
     );
-    res.render("coin-rate.ejs", { data: result.data });
+    const info = await axios.get(
+      `https://api.coinpaprika.com/v1/coins/${id}`
+    );
+    res.render("coin-rate.ejs", { rate: rate.data , info: info.data});
   } catch (error) {
     console.log(JSON.stringify("Error: " + error));
   }

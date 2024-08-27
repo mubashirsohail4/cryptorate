@@ -1,45 +1,27 @@
 <%- include("partials/header.ejs") %>
 
 <form action="/coin-rate" method="post">
-  <label for="coinslist">Choose a coin</label>
-  <select name="coinid" id="coinid">
+  <label for="coinslist"></label>
+  <select name="coinid" id="coinid" required>
+    <option value="">Select a coin</option>
     <% for (let i = 0; i < 100; i++) { %>
     <option value="<%= coins[i].id %>"><%= i+1 %>. <%= coins[i].name %></option>
     <% } %>
   </select>
+  <br />
   <button type="submit">Get Rate</button>
 </form>
 
+<h2>Quick Links</h2>
 <form id="quick-links-form" action="/coin-rate" method="post">
-  <button name="coinid" id="btc-bitcoin" value="btc-bitcoin" type="submit">
+  <% for (let i = 0; i < 4; i++) { %>
+  <button name="coinid" value="<%= coins[i].id %>" type="submit">
     <img
-      src="https://static.coinpaprika.com/coin/btc-bitcoin/logo.png"
-      alt="btc-bitcoin"
-    />Bitcoin
+      src="https://static.coinpaprika.com/coin/<%= coins[i].id %>/logo.png"
+      alt="<%= coins[i].id %>-image"
+    /><%= coins[i].name %>
   </button>
-  <button name="coinid" id="eth-ethereum" value="eth-ethereum" type="submit">
-    <img
-      src="https://static.coinpaprika.com/coin/eth-ethereum/logo.png"
-      alt="eth-ethereum"
-    />Ethereum
-  </button>
-  <button name="coinid" id="usdt-tether" value="usdt-tether" type="submit">
-    <img
-      src="https://static.coinpaprika.com/coin/usdt-tether/logo.png"
-      alt="usdt-tether"
-    />Tether
-  </button>
-  <button
-    name="coinid"
-    id="bnb-binance-coin"
-    value="bnb-binance-coin"
-    type="submit"
-  >
-    <img
-      src="https://static.coinpaprika.com/coin/bnb-binance-coin/logo.png"
-      alt="bnb-binance-coin"
-    />Binance Coin
-  </button>
+  <% } %>
 </form>
 
 <%- include("partials/footer.ejs") %>

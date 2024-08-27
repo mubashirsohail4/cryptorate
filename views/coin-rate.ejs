@@ -1,18 +1,20 @@
 <%- include("partials/header.ejs") %>
 
 <img
-  src="https://static.coinpaprika.com/coin/<%= data.id %>/logo.png"
-  alt="<%= data.id %>"
+  src="https://static.coinpaprika.com/coin/<%= rate.id %>/logo.png"
+  alt="<%= rate.id %>"
 />
 
-<h2><%= data.name %></h2>
-<p>USD: <%= data.quotes.USD.price %> $</p>
-<p>Rank: <%= data.rank %></p>
-<p>Symbol: <%= data.symbol %></p>
-<p>1h: <%= data.quotes.USD.percent_change_1h %>%</p>
-<p>24h: <%= data.quotes.USD.percent_change_24h %>%</p>
-<p>7d: <%= data.quotes.USD.percent_change_7d %>%</p>
-<p>30d: <%= data.quotes.USD.percent_change_30d %>%</p>
-<p>1y: <%= data.quotes.USD.percent_change_1y %>%</p>
+<h2><%= rate.name %></h2>
+<p>USD: <%= rate.quotes.USD.price %> $</p>
+<p>Rank: <%= rate.rank %></p>
+<p>Symbol: <%= rate.symbol %></p>
+<p>1h: <%= rate.quotes.USD.percent_change_1h %>%</p>
+<p>24h: <%= rate.quotes.USD.percent_change_24h %>%</p>
+<p>7d: <%= rate.quotes.USD.percent_change_7d %>%</p>
+<p>30d: <%= rate.quotes.USD.percent_change_30d %>%</p>
+<p>1y: <%= rate.quotes.USD.percent_change_1y %>%</p>
+
+<p>About: <%= info.description %></p>
 
 <%- include("partials/footer.ejs") %>
