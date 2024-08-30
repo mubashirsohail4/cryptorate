@@ -1,9 +1,6 @@
 <%- include("partials/header.ejs") %>
 
-<img
-  src="https://static.coinpaprika.com/coin/<%= rate.id %>/logo.png"
-  alt="<%= rate.id %>"
-/>
+<img src="https://static.coinpaprika.com/coin/<%= rate.id %>/logo.png" alt="<%= rate.id %>" />
 
 <h2><%= rate.name %></h2>
 <p>USD: <%= rate.quotes.USD.price %> $</p>

@@ -1,27 +1,44 @@
 <%- include("partials/header.ejs") %>
 
-<form action="/coin-rate" method="post">
-  <label for="coinslist"></label>
-  <select name="coinid" id="coinid" required>
-    <option value="">Select a coin</option>
-    <% for (let i = 0; i < 100; i++) { %>
-    <option value="<%= coins[i].id %>"><%= i+1 %>. <%= coins[i].name %></option>
-    <% } %>
-  </select>
+<div class="content">
+  <h1>Real-Time Cryptocurrency Prices</h1>
+  <p class="subtitle is-6">Get rate of your favorite crypto coin in USD</p>
+
+<form class="box" action="/coin-rate" method="post">
+  <label class="label" for="coinslist">Select a coin from the list</label>
+  <div class="field">
+    <div class="select">
+      <select name="coinid" id="coinid" required>
+        <% for (let i=0; i < 100; i++) { %>
+        <option value="<%= coins[i].id %>">
+          <%= coins[i].name %>
+        </option>
+        <% } %>
+      </select>
+    </div>
+  </div>
   <br />
-  <button type="submit">Get Rate</button>
+  <div class="field"><button class="button is-link" type="submit">Get Rate</button></div>
 </form>
 
-<h2>Quick Links</h2>
+<h3>Quick Links</h3>
+
 <form id="quick-links-form" action="/coin-rate" method="post">
-  <% for (let i = 0; i < 4; i++) { %>
-  <button name="coinid" value="<%= coins[i].id %>" type="submit">
-    <img
-      src="https://static.coinpaprika.com/coin/<%= coins[i].id %>/logo.png"
-      alt="<%= coins[i].id %>-image"
-    /><%= coins[i].name %>
-  </button>
-  <% } %>
+  <div class="buttons is-grouped">
+  <% for (let i=0; i < 4; i++) { %>
+    <button class="button is-primary" name="coinid" value="<%= coins[i].id %>" type="submit">
+      <span class="icon">
+        <img class="image" src="https://static.coinpaprika.com/coin/<%= coins[i].id %>/logo.png" alt="<%= coins[i].id %>-image" /> 
+      </span>
+      <span>
+      <%= coins[i].name %>
+      </span>
+    </button>
+    <% } %>
+  </div>
 </form>
+
+
+</div>
 
 <%- include("partials/footer.ejs") %>
