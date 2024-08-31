@@ -5,11 +5,11 @@
   <p class="subtitle is-6">Get rate of your favorite crypto coin in USD</p>
 
 <form class="box" action="/coin-rate" method="post">
-  <label class="label" for="coinslist">Select a coin from the list of top 500 coins</label>
+  <label class="label" for="coinslist">Select a coin from the list of top 1000 coins</label>
   <div class="field">
     <div class="select">
       <select name="coinid" id="coinid" required>
-        <% for (let i=0; i < 500; i++) { %>
+        <% for (let i=0; i < 1000; i++) { %>
         <option value="<%= coins[i].id %>">
           <%= coins[i].name %>
         </option>
@@ -25,7 +25,7 @@
 
 <form id="quick-links-form" action="/coin-rate" method="post">
   <div class="buttons is-grouped">
-  <% for (let i=0; i < 4; i++) { %>
+  <% for (let i=0; i < 20; i++) { %>
     <button class="button is-info" name="coinid" value="<%= coins[i].id %>" type="submit">
       <span class="icon">
         <img class="image" src="https://static.coinpaprika.com/coin/<%= coins[i].id %>/logo.png" alt="<%= coins[i].id %>-image" /> 
