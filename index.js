@@ -12,6 +12,11 @@ app.use(express.static("public"));
 // Middleware: bodyParser to get form values from html
 app.use(bodyParser.urlencoded({ extended: true }));
 
+let USDollar = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+});
+
 let coins = {};
 
 // Get coins list from api
@@ -26,6 +31,13 @@ try {
 app.get("/", async (req, res) => {
   res.render("index.ejs", { coins: coins });
 });
+
+// const rate = await axios.get(
+//   `https://api.coinpaprika.com/v1/tickers/btc-bitcoin`
+// );
+// const info = await axios.get(
+//   `https://api.coinpaprika.com/v1/coins/btc-bitcoin`
+// );
 
 // Get rate about specific coin
 app.post("/coin-rate", async (req, res) => {
@@ -43,6 +55,6 @@ app.post("/coin-rate", async (req, res) => {
   }
 });
 
-app.listen(port, (req, res) => {
+app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

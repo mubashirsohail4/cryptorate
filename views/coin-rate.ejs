@@ -1,17 +1,83 @@
 <%- include("partials/header.ejs") %>
 
-<img src="https://static.coinpaprika.com/coin/<%= rate.id %>/logo.png" alt="<%= rate.id %>" />
+<% 
+let USDollar = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+}); 
 
-<h2><%= rate.name %></h2>
-<p>USD: <%= rate.quotes.USD.price %> $</p>
-<p>Rank: <%= rate.rank %></p>
-<p>Symbol: <%= rate.symbol %></p>
-<p>1h: <%= rate.quotes.USD.percent_change_1h %>%</p>
-<p>24h: <%= rate.quotes.USD.percent_change_24h %>%</p>
-<p>7d: <%= rate.quotes.USD.percent_change_7d %>%</p>
-<p>30d: <%= rate.quotes.USD.percent_change_30d %>%</p>
-<p>1y: <%= rate.quotes.USD.percent_change_1y %>%</p>
+let USDollarLessThanZero = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 7
+}); 
 
-<p>About: <%= info.description %></p>
+%>
+
+<section class="section">
+  <div class="fixed-grid has-7-cols">
+    <div class="grid">
+      <div class="cell">
+        <img class="coin-image" src="https://static.coinpaprika.com/coin/<%= rate.id %>/logo.png" alt="<%= rate.id %>" />
+      </div>
+      <div class="cell is-col-span-6">
+        <h1 class="title"><%= rate.name %> </h1>
+        <p class="subtitle"> <%= rate.symbol %></p>
+      </div>
+    </div>
+  </div>
+  <p class="title is-3">
+    <% if (rate.quotes.USD.price>1) { %>
+      <%= USDollar.format(rate.quotes.USD.price) %>
+    <% } else { %>
+      <%= USDollarLessThanZero.format(rate.quotes.USD.price) %>
+    <% } %> 
+  </p>
+</section>
+
+
+<div class="box">
+  <table class="table is-fullwidth">
+    <tbody>
+      <tr>
+        <th>Rank</th>
+        <td class="has-text-right">#<%= rate.rank %></td>
+      </tr>
+      <tr>
+        <th>Market cap</th>
+        <td class="has-text-right"><%= USDollar.format(rate.quotes.USD.market_cap) %></td>
+      </tr>
+      <tr>
+        <th>Volume (24h)</th>
+        <td class="has-text-right"><%= USDollar.format(rate.quotes.USD.volume_24h) %></td>
+      </tr>
+      <tr>
+        <th>1h</th>
+        <td class="has-text-right"><%= rate.quotes.USD.percent_change_1h %>%</td>
+      </tr>
+      <tr>
+        <th>24h</th>
+        <td class="has-text-right"><%= rate.quotes.USD.percent_change_24h %>%</td>
+      </tr>
+      <tr>
+        <th>7d</th>
+        <td class="has-text-right"><%= rate.quotes.USD.percent_change_7d %>%</td>
+      </tr>
+      <tr>
+        <th>30d</th>
+        <td class="has-text-right"><%= rate.quotes.USD.percent_change_30d %>%</td>
+      </tr>
+      <tr>
+        <th>1y</th>
+        <td class="has-text-right"><%= rate.quotes.USD.percent_change_1y %>%</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="content">
+  <h4>About</h4>
+  <p><%= info.description %></p>
+</div>
 
 <%- include("partials/footer.ejs") %>
