@@ -1,5 +1,4 @@
 <%- include("partials/header.ejs") %>
-
 <% 
 let USDollar = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -11,9 +10,7 @@ let USDollarLessThanZero = new Intl.NumberFormat('en-US', {
   currency: 'USD',
   minimumFractionDigits: 7
 }); 
-
 %>
-
 <section class="section">
   <div class="fixed-grid has-7-cols">
     <div class="grid">
@@ -28,56 +25,53 @@ let USDollarLessThanZero = new Intl.NumberFormat('en-US', {
   </div>
   <p class="title is-3">
     <% if (rate.quotes.USD.price>1) { %>
-      <%= USDollar.format(rate.quotes.USD.price) %>
+    <%= USDollar.format(rate.quotes.USD.price) %>
     <% } else { %>
-      <%= USDollarLessThanZero.format(rate.quotes.USD.price) %>
-    <% } %> 
+    <%= USDollarLessThanZero.format(rate.quotes.USD.price) %>
+    <% } %>
   </p>
 </section>
-
-
 <div class="box">
   <table class="table is-fullwidth">
     <tbody>
       <tr>
-        <th>Rank</th>
-        <td class="has-text-right">#<%= rate.rank %></td>
-      </tr>
-      <tr>
-        <th>Market cap</th>
-        <td class="has-text-right"><%= USDollar.format(rate.quotes.USD.market_cap) %></td>
-      </tr>
-      <tr>
-        <th>Volume (24h)</th>
-        <td class="has-text-right"><%= USDollar.format(rate.quotes.USD.volume_24h) %></td>
-      </tr>
-      <tr>
         <th>1h</th>
-        <td class="has-text-right"><%= rate.quotes.USD.percent_change_1h %>%</td>
+        <td class="value has-text-right"><%= rate.quotes.USD.percent_change_1h %></td>
       </tr>
       <tr>
         <th>24h</th>
-        <td class="has-text-right"><%= rate.quotes.USD.percent_change_24h %>%</td>
+        <td class="value has-text-right"><%= rate.quotes.USD.percent_change_24h %></td>
       </tr>
       <tr>
         <th>7d</th>
-        <td class="has-text-right"><%= rate.quotes.USD.percent_change_7d %>%</td>
+        <td class="value has-text-right"><%= rate.quotes.USD.percent_change_7d %></td>
       </tr>
       <tr>
         <th>30d</th>
-        <td class="has-text-right"><%= rate.quotes.USD.percent_change_30d %>%</td>
+        <td class="value has-text-right"><%= rate.quotes.USD.percent_change_30d %></td>
       </tr>
       <tr>
         <th>1y</th>
-        <td class="has-text-right"><%= rate.quotes.USD.percent_change_1y %>%</td>
+        <td class="value has-text-right"><%= rate.quotes.USD.percent_change_1y %></td>
+      </tr>
+      <tr>
+        <th>Rank</th>
+        <td class="value has-text-right">#<%= rate.rank %></td>
+      </tr>
+      <tr>
+        <th>Market cap</th>
+        <td class="value has-text-right"><%= USDollar.format(rate.quotes.USD.market_cap) %></td>
+      </tr>
+      <tr>
+        <th>Volume (24h)</th>
+        <td class="value has-text-right"><%= USDollar.format(rate.quotes.USD.volume_24h) %></td>
       </tr>
     </tbody>
   </table>
 </div>
-
 <div class="content">
   <h4>About</h4>
   <p><%= info.description %></p>
 </div>
-
+<script src="scripts/coin-rate.js"></script>
 <%- include("partials/footer.ejs") %>
