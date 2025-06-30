@@ -1,11 +1,13 @@
 import express from "express";
 import bodyParser from "body-parser";
 import axios from "axios";
+import path from "path";
 
 const app = express();
-// const port = 3000;
+const port = 3000;
+const __dirname = path.resolve();
 
-app.set('views', __dirname + '/../views');
+app.set('views', __dirname + '/views');
 app.set("view engine", "ejs");
 
 // Middleware: Path for static files in public folder
@@ -42,9 +44,9 @@ app.post("/coin-rate", async (req, res) => {
   }
 });
 
-// app.listen(port, () => {
-//   console.log(`Server is running on port ${port}`);
-// });
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 
 // export the app for vercel serverless functions
 export default app;
