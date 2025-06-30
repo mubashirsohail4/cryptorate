@@ -7,11 +7,12 @@ const app = express();
 const port = 3000;
 const __dirname = path.resolve();
 
-app.set('views', __dirname + '/views');
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 // Middleware: Path for static files in public folder
 app.use(express.static("public"));
+// path.join(__dirname, "public")
 
 // Middleware: bodyParser to get form values from html
 app.use(bodyParser.urlencoded({ extended: true }));
