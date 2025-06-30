@@ -5,7 +5,7 @@ import axios from "axios";
 const app = express();
 // const port = 3000;
 
-app.set("views", "/views");
+app.set("views", "./views");
 app.set("view engine", "ejs");
 
 // Middleware: Path for static files in public folder
