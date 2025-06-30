@@ -4,9 +4,9 @@ import axios from "axios";
 
 const app = express();
 // const port = 3000;
-app.set("view engine", "ejs");
 
-app.set("views", process.cwd() + "/api/views");
+app.set("views", "/api/views");
+app.set("view engine", "ejs");
 
 // Middleware: Path for static files in public folder
 app.use(express.static("public"));
@@ -19,7 +19,7 @@ app.get("/", async (req, res) => {
   try {
     const result = await axios.get(`https://api.coinpaprika.com/v1/coins`);
     const coins = result.data;
-    res.render("index.ejs", { coins: coins });
+    res.render("index", { coins: coins });
   } catch (error) {
     console.log(JSON.stringify("Error: " + error));
     res.status(500).send("Error fetching coins");
@@ -36,7 +36,7 @@ app.post("/coin-rate", async (req, res) => {
     const info = await axios.get(
       `https://api.coinpaprika.com/v1/coins/${id}`
     );
-    res.render("coin-rate.ejs", { rate: rate.data , info: info.data});
+    res.render("coin-rate", { rate: rate.data , info: info.data});
   } catch (error) {
     console.log(JSON.stringify("Error: " + error));
   }
