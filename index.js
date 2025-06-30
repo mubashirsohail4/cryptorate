@@ -6,7 +6,7 @@ const app = express();
 // const port = 3000;
 
 // app.set("views", "views");
-app.set("view engine", "ejs");
+// app.set("view engine", "ejs");
 
 // Middleware: Path for static files in public folder
 app.use(express.static("public"));
