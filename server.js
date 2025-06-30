@@ -12,19 +12,26 @@ app.use(express.static("public"));
 // Middleware: bodyParser to get form values from html
 app.use(bodyParser.urlencoded({ extended: true }));
 
-let coins = {};
+// let coins = {};
 
-// Get coins list from api
-try {
-  const result = await axios.get(`https://api.coinpaprika.com/v1/coins`);
-  coins = result.data;
-} catch (error) {
-  console.log(JSON.stringify("Error: " + error));
-}
+// // Get coins list from api
+// try {
+//   const result = await axios.get(`https://api.coinpaprika.com/v1/coins`);
+//   coins = result.data;
+// } catch (error) {
+//   console.log(JSON.stringify("Error: " + error));
+// }
 
 // Root directory request
 app.get("/", async (req, res) => {
-  res.render("index.ejs", { coins: coins });
+  try {
+    const result = await axios.get(`https://api.coinpaprika.com/v1/coins`);
+    const coins = result.data;
+    res.render("index.ejs", { coins: coins });
+  } catch (error) {
+    console.log(JSON.stringify("Error: " + error));
+    res.status(500).send("Error fetching coins");
+  }
 });
 
 // Get rate about specific coin
