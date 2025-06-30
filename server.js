@@ -24,7 +24,7 @@ try {
 
 // Root directory request
 app.get("/", async (req, res) => {
-  res.render("index.ejs");
+  res.render("index.ejs", { coins: coins });
 });
 
 // Get rate about specific coin
