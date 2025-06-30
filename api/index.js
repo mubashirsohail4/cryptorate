@@ -5,7 +5,6 @@ import axios from "axios";
 const app = express();
 // const port = 3000;
 app.set("view engine", "ejs");
-app.set("views", "../views"); // adjust path if your views folder is at project root
 
 // Middleware: Path for static files in public folder
 app.use(express.static("public"));
