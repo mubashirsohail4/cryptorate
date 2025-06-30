@@ -58,3 +58,6 @@ app.post("/coin-rate", async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+// export the app for vercel serverless functions
+export default app;
