@@ -17,14 +17,23 @@
   <header>
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="nav container is-max-tablet">
-        <a class="button is-info is-dark is-fullwidth" href="/">
-          <span class="icon">
-            <img class="image" src="images/favicon-32x32.png" alt="">
+        <a class="button is-info is-dark is-fullwidth is-flex is-justify-content-space-between" href="/">
+          <span class="icon" id="back-button">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16.2426 6.34317L14.8284 4.92896L7.75739 12L14.8285 19.0711L16.2427 17.6569L10.5858 12L16.2426 6.34317Z" fill="currentColor" />
+            </svg>
           </span>
-          <span class="chakra-petch-bold is-uppercase">CryptoRate</span>
+          <div class="is-flex">
+            <span class="icon">
+            <img class="image " src="images/favicon-32x32.png" alt="">
+          </span>
+          <span class="chakra-petch-bold is-uppercase is-align-self-center">CryptoRate</span>
+          </div>
+          <span> </span>
         </a>
       </div>
     </nav>
+    <script src="scripts/header.js"></script>
   </header>
   <div class="container is-max-tablet">
     <main>
